@@ -35,16 +35,11 @@
     <div id="body">
       <div id="footer">
         <div class="hint"></div>
-        <div><select>
-          <option value="equalarea">equalarea</option>
-          <option value="equidistant">equidistant</option>
-          <option value="gnomonic">gnomonic</option>
-          <option value="orthographic" selected>orthographic</option>
-          <option value="stereographic">stereographic</option>
-        </select></div>
+          <option value="orthographic" selected></option> 
       </div>
     </div>
-    <div>
+    <div id='projection'>
+
     <script type="text/javascript">
 
 var feature;
@@ -53,7 +48,7 @@ var projection = d3.geo.azimuthal()
     .scale(180)
     .origin([-71.03,42.37])
     .mode("orthographic")
-    .translate([200, 400]);
+    .translate([200, 200]);
 
 var circle = d3.geo.greatCircle()
     .origin(projection.origin());
@@ -71,7 +66,7 @@ var path = d3.geo.path()
     .projection(projection);
 
 var svg = d3.select("#body").append("svg:svg")
-    .attr("width", 980)
+    .attr("width", 680)
     .attr("height", 600)
     .on("mousedown", mousedown);
 
@@ -84,8 +79,9 @@ d3.json("world-countries.json", function(collection) {
 
   feature.append("svg:title")
       .text(function(d) { return d.properties.name; });
-});
+  console.log(feature)
 
+});
 d3.select(window)
     .on("mousemove", mousemove)
     .on("mouseup", mouseup);

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import fire from './fire';
+import Heading from './Heading'
+import EarthProjection from './components/EarthProjections'
 
 class App extends Component {
    constructor(props) {
@@ -126,6 +128,8 @@ class App extends Component {
           );
         })}
         </ul>
+        <Heading />
+        <EarthProjection />
 
           <div >
       </div>

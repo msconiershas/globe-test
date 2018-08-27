@@ -14,7 +14,6 @@ d3.geo.azimuthal = function() {
       sy0;
 
   function azimuthal(coordinates) {
-
     var x1 = coordinates[0] * d3_geo_radians - x0,
         y1 = coordinates[1] * d3_geo_radians,
         cx1 = Math.cos(x1),
@@ -37,25 +36,10 @@ d3.geo.azimuthal = function() {
     ];
   }
 
-  azimuthal.invert = function(coordinates) {
-
-    var x = (coordinates[0] - translate[0]) / scale,
-        y = (coordinates[1] - translate[1]) / scale,
-        p = Math.sqrt(x * x + y * y),
-        c = mode === "stereographic" ? 2 * Math.atan(p)
-          : mode === "gnomonic" ? Math.atan(p)
-          : mode === "equidistant" ? p
-          : mode === "equalarea" ? 2 * Math.asin(.5 * p)
-          : Math.asin(p),
-        sc = Math.sin(c),
-        cc = Math.cos(c);
-    return [
-      (x0 + Math.atan2(x * sc, p * cy0 * cc + y * sy0 * sc)) / d3_geo_radians,
-      Math.asin(cc * sy0 - (p ? (y * sc * cy0) / p : 0)) / d3_geo_radians
-    ];
-  };
+  //azimuthal.invert = function(coordinates) 
 
   azimuthal.mode = function(x) {
+
     if (!arguments.length) return mode;
     mode = x + "";
     return azimuthal;
@@ -713,6 +697,7 @@ function d3_geo_boundsPolygon(o, f) {
 // TODO breakAtDateLine?
 
 d3.geo.circle = function() {
+
   var origin = [0, 0],
       degrees = 90 - 1e-2,
       radians = degrees * d3_geo_radians,
